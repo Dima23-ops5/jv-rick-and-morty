@@ -32,9 +32,10 @@ public class CharactersClientImpl implements CharactersClient {
         List<CharactersResponseDto> charactersResponseDtoList = new ArrayList<>();
         while (charactersResponseDataDto.info().next() != null) {
             charactersResponseDtoList.addAll(
-                    charactersResponseDataDto.results().stream()
-                    .map(ch -> charactersMapper.toDto(charactersRepository
-                            .save(charactersMapper.toModel(ch))))
+                    charactersResponseDataDto.results().stream().map(ch ->
+                                    charactersMapper.toDto(
+                                            charactersRepository.save(
+                                                    charactersMapper.toModel(ch))))
                     .toList());
         }
         return charactersResponseDtoList;
