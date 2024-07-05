@@ -2,7 +2,6 @@ package mate.academy.rickandmorty.service.impl;
 
 import java.util.List;
 import java.util.Random;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import mate.academy.rickandmorty.dto.internal.CharactersResponseDto;
 import mate.academy.rickandmorty.mapper.CharactersMapper;
