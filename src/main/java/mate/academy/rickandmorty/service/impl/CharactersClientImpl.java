@@ -9,7 +9,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import mate.academy.rickandmorty.dto.external.CharactersResponseDataDto;
 import mate.academy.rickandmorty.dto.internal.CharactersResponseDto;
 import mate.academy.rickandmorty.exception.DaraProcessingException;
@@ -20,11 +20,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class CharactersClientImpl implements CharactersClient {
-
-    @Value("${mate.academy.current.url}")
-    private final String baseUrl;
+    @Value("${api.base.url}")
+    private String url;
     private final ObjectMapper objectMapper;
     private final CharactersRepository charactersRepository;
     private final CharactersMapper charactersMapper;
@@ -50,7 +49,7 @@ public class CharactersClientImpl implements CharactersClient {
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create(baseUrl))
+                .uri(URI.create(url))
                 .build();
         try {
             HttpResponse httpResponse = httpClient.send(httpRequest,
