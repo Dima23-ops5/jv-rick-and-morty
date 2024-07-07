@@ -24,7 +24,7 @@ import org.springframework.stereotype.Component;
 public class CharactersClientImpl implements CharactersClient {
 
     @Value("${mate.academy.current.url}")
-    private final String BASE_URL;
+    private final String baseUrl;
     private final ObjectMapper objectMapper;
     private final CharactersRepository charactersRepository;
     private final CharactersMapper charactersMapper;
@@ -50,7 +50,7 @@ public class CharactersClientImpl implements CharactersClient {
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create(BASE_URL))
+                .uri(URI.create(baseUrl))
                 .build();
         try {
             HttpResponse httpResponse = httpClient.send(httpRequest,
