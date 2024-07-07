@@ -16,12 +16,15 @@ import mate.academy.rickandmorty.exception.DaraProcessingException;
 import mate.academy.rickandmorty.mapper.CharactersMapper;
 import mate.academy.rickandmorty.repository.CharactersRepository;
 import mate.academy.rickandmorty.service.CharactersClient;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
 @AllArgsConstructor
 public class CharactersClientImpl implements CharactersClient {
-    private static final String BASE_URL = "https://rickandmortyapi.com/api";
+
+    @Value("${mate.academy.current.url}")
+    private final String BASE_URL;
     private final ObjectMapper objectMapper;
     private final CharactersRepository charactersRepository;
     private final CharactersMapper charactersMapper;
