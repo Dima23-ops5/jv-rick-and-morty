@@ -16,10 +16,10 @@ public class CharactersServiceImpl implements CharactersService {
     private final CharactersMapper charactersMapper;
     private final CharactersRepository charactersRepository;
     private final CharactersClient charactersClient;
+    private final Random random;
 
     @Override
     public CharactersResponseDto getRandomCharacter() {
-        Random random = new Random();
         Long randomId = random.nextLong(
                 charactersClient.getCharacters().info().count());
         return charactersMapper.toDto(charactersRepository.getById(randomId));
@@ -27,9 +27,6 @@ public class CharactersServiceImpl implements CharactersService {
 
     @Override
     public List<CharactersResponseDto> getAllCharactersByName(String name) {
-        return charactersRepository.findAllByName(name).stream()
-                .map(charactersMapper::toDto)
-                .toList();
+        return charactersMapper.toDtoList(charactersRepository.findAllByName(name));
     }
-
 }

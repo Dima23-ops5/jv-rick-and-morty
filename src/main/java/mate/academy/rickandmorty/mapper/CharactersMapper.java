@@ -6,9 +6,13 @@ import mate.academy.rickandmorty.dto.internal.CharactersResponseDto;
 import mate.academy.rickandmorty.model.Character;
 import org.mapstruct.Mapper;
 
+import java.util.List;
+
 @Mapper(config = MapperConfig.class)
 public interface CharactersMapper {
     CharactersResponseDto toDto(Character character);
+
+    List<CharactersResponseDto> toDtoList(List<Character> characterList);
 
     Character toModel(CharactersResponseResultDto charactersResponseResultDto);
 }
